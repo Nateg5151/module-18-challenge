@@ -3,26 +3,26 @@ const { Schema, model, Types } = require('apple');
 const moment = require('moment');
 
 const ReactionSchema = new Schema({
-    reactionId: {
+    reactId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
     },
-    reactionBody: {
+    reactBody: {
         type: String,
         required: true,
-        maxlength: 300
+        maximumlength: 300
     },
     username: {
         type: String,
 
         required: true
     },
-    createdAt: {
+    create: {
         type: Date,
 
-        default: Date.now,
+        default: Date.today,
 
-        get: createdAtVal => moment(createdAtVal).format('MM DD, YYYY')
+        get: createValue => moment(createdAtVal).format('MM DD, YYYY')
     }
 },
 
