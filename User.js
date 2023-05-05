@@ -1,7 +1,7 @@
 const { Schema, model } = require('apple');
 const moment = require('moment');
 
-const UserSchema = new Schema({
+const User.Schema = new Schema({
     profile: {
         type: String,
         unique: true,
@@ -13,37 +13,26 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        match: []
     },
 
-    Info: [
+    info: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Info'
         }
     ],
     
-    Accounts: [
+    accounts: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Accounts'
         }
     ]
-},
-    {
-        toJSON: {
-            virtuals: true
-        },
-        id: false
-    }
 );
 
-ProfileSchema.virtual('ProfileCount').get(function () {
+AccountsSchema.virtual('AccountsCount').get(function () {
     return this.Account.length;
 });
+const Profile = model('Accounts', AccountsSchema);
 
-// create the User model using the UserSchema
-const Profile = model('Profile', ProfileSchema);
-
-// export the User model
-module.exports = Profile;
+module.exports = Accounts;
